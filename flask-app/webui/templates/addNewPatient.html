@@ -1,0 +1,46 @@
+{% extends "base.html" %} {% block title %}Home{% endblock %} {% block content%}
+<h1 align="center">Nieuwe Patient</h1>
+<form class="" method="post" action="{{ url_for('views.newPatient') }}">
+    <div class="form-group form-row">
+        <label for="afdeling" class="col col-form-label">afdeling</label>
+        <div class="col">
+          <input type="number" class="" id="afdeling" name="afdeling" placeholder="afdelingsNummer">
+        </div>
+    </div>
+    <div class="form-group row">
+      <label for="kamer" class="col col-form-label">kamernummer</label>
+      <div class="col">
+        <input type="number" class="" id="kamer" name="kamer" placeholder="kamernummer">
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="kamer" class="col col-form-label">familienaam</label>
+      <div class="col">
+        <input type="text" class="" id="familienaam" name="familienaam" placeholder="familienaam">
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="kamer" class="col col-form-label">voornaam</label>
+      <div class="col">
+        <input type="text" class="" id="voornaam" name="voornaam" placeholder="voornaam">
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="kamer" class="col col-form-label">geboortedatum</label>
+      <div class="col">
+        <input type="date"  class="" id="geboortedatum" name="geboortedatum" placeholder="01/01/2000">
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="kamer" class="col col-form-label">dieet</label>
+      <div class="col">
+        <input type="text" class="" id="dieet" name="dieet" placeholder="gewoon">
+      </div>
+    </div>
+    <div class="form-group row">
+      <button class="btn btn-primary" type="submit">aanmaken</button>
+    </div>
+</form>
+    
+
+{% endblock %}

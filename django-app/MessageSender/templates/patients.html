@@ -1,0 +1,57 @@
+{% extends "base.html" %} {% block title %}UseCase2{% endblock %} {% block content%}
+
+<head>
+
+</head>
+<h1 align="center">Usecase 2</h1>
+
+<form class="input-group" action="{% url 'filterData' %}" method="post">
+  {% csrf_token %}
+  <input id="searchQuery" name="searchQuery" type="text" required class="form-control rounded" placeholder="patient"
+    value="{{searchValue|default:''}}">
+  <button type="Submit" class="btn btn-outline-primary">search</button>
+</form>
+
+<br>
+{% if not patients or patients|length == 0 %}
+<p class="" align="center">Geen patienten gevonden</p>
+{%else %}
+
+
+<table class="table table-sm table-bordered table-hover table-responsive-sm">
+  <thead>
+    <tr>
+      <th scope="col">Afdeling</th>
+      <th scope="col">Kamer</th>
+      <th scope="col">Familienaam</th>
+      <th scope="col">Voornaam</th>
+      <th scope="col">Geboortedatum</th>
+      <th scope="col">Geslacht</th>
+      <th scope="col">Nationaliteit</th>
+      <th scope="col">send Message</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for patient in patients %}
+    <tr>
+      <td scope="row">{{ patient.box_code }}</td>
+      <td>{{ patient.kamer }}</td>
+      <td>{{ patient.last_name }}</td>
+      <td>{{ patient.first_name }}</td>
+      <td>{{ patient.date_of_birth }}</td>
+      <td>{{ patient.gender }}</td>
+      <td>{{ patient.nationality }}</td>
+      <td>
+        <form action="{% url 'sendMessage' %}" method="post">
+          {% csrf_token %}
+          <input type="hidden" name="patientId" value="{{patient.id}}">
+          <input type="hidden" name="patientName" value="{{patient.first_name|add:' '|add:patient.last_name}}">
+          <button type="submit">send</button>
+        </form>
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{%endif%}
+{% endblock %}

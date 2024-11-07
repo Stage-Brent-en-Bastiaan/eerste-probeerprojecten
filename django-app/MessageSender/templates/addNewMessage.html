@@ -1,0 +1,34 @@
+{% extends "base.html" %} {% block title %}Home{% endblock %} {% block content%}
+<h3 align="center">Nieuw Berichtje voor {{recipient_name}} met id {{recipient_id}}</h3>
+
+<form class="" method="post" action="{% url 'postNewMessage' %}">
+  {% csrf_token %}
+  {{ form }}
+  <div class="form-group row">
+    <label for="message" class="col col-form-label">message</label>
+    <div class="col">
+      <input type="text" class="" id="message" name="message" placeholder="message">
+    </div>
+  </div>
+  <div class="form-group row">
+    <button class="col btn btn-outline-primary btn-sm border-dark text-dark p-1 m-0" type="submit">aanmaken</button>
+  </div>
+</form>
+<br>
+<h5 align="center">meest recent berichtje</h5>
+<table class="table table-sm table-bordered table-hover table-responsive-sm">
+  <thead>
+    <th scope="row">verzender</th>
+    <th scope="row">inhoud</th>
+    <th scope="row">ontvanger</th>
+  </thead>
+  <tbody>
+    <tr>
+      <td scope="row">{{ lastMessage.verzender }}</td>
+      <td scope="row">{{ lastMessage.inhoud }}</td>
+      <td>{{ lastMessage.ontvanger }}</td>
+    </tr>
+  </tbody>
+</table>
+
+{% endblock %}

@@ -1,0 +1,32 @@
+{% extends "base.html" %} {% block title %}Home{% endblock %} {% block content%}
+<h3 class="" align="center">Nieuw Berichtje</h3>
+
+<form class="" method="post" action="{{ url_for('views.postNewMessage') }}">
+  <div class="form-group form-row">
+    <label for="recipientId" class="col col-form-label">recipientId</label>
+    <div class="col">
+      <input type="" class="" id="recipientId" name="recipientId" placeholder="recipientId">
+    </div>
+  </div>
+  <div class="form-group row">
+    <label for="message" class="col col-form-label">message</label>
+    <div class="col">
+      <input type="text" class="" id="message" name="message" placeholder="message">
+    </div>
+  </div>
+  <div class="form-group row">
+    <button class="col btn btn-outline-primary btn-sm border-dark text-dark p-1 m-0" type="submit">aanmaken</button>
+  </div>
+</form>
+<br>
+<h5 align="center">meest recent berichtje</h5>
+<table class="table table-sm table-bordered table-hover table-responsive-sm">
+  <tbody>
+    <tr>
+      <td scope="row">{{ lastMessage.inhoud }}</td>
+      <td>{{ lastMessage.ontvanger }}</td>
+    </tr>
+  </tbody>
+</table>
+
+{% endblock %}

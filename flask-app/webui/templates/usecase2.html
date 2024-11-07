@@ -1,0 +1,62 @@
+{% extends "base.html" %} {% block title %}UseCase2{% endblock %} {% block content%}
+<head>
+  <script src="{{url_for('static', filename='usecase2.js')}}"></script>
+</head>
+<h1 align="center">Usecase 2</h1>
+
+<!--code om met sqllite db te werken ipv api-->
+<!-- <form action="{{ url_for('views.addDummyData') }}" method="post">
+  <button type="submit" class="btn btn-primary">Voeg dummiedata toe</button>
+</form>
+<form action="{{ url_for('views.deleteData') }}" method="post">
+  <button type="submit" class="btn btn-primary">reset data</button>
+</form> -->
+<form action="{{ url_for('views.addPatientRequest') }}" method="get">
+  <button type="submit" class="btn btn-primary">nieuwe patient</button>
+</form>
+
+<form class="input-group" action="{{ url_for('views.filterData') }}" method="post">
+  <input id="searchQuery" name="searchQuery" type="text" required class="form-control rounded" placeholder="patient" value="{{searchValue if searchValue is defined else ''}}" ></input>
+  <button type="Submit" class="btn btn-outline-primary">search</button>
+</form>
+
+<br>
+{%if not patients or patients|length==0%}
+<p class="" align="center">Geen patienten gevonden</p>
+{%else %}
+
+
+<table class="table table-sm table-bordered table-hover table-responsive-sm">
+  <thead>
+      <tr>
+          <th scope="col">Afdeling</th>
+          <th scope="col">Kamer</th>
+          <th scope="col">Familienaam</th>
+          <th scope="col">Voornaam</th>
+          <th scope="col">Geboortedatum</th>
+          <th scope="col">Geslacht</th>
+          <th scope="col">Nationaliteit</th>
+          <th scope="col" name="deleteheader"></th>
+      </tr>
+  </thead>
+  <tbody>
+      {% for patient in patients %}
+      <tr>
+          <td scope="row">{{ patient.box_code }}</td>
+          <td>{{ patient.kamer }}</td>
+          <td>{{ patient.last_name }}</td>
+          <td>{{ patient.first_name }}</td>
+          <td>{{ patient.date_of_birth }}</td>
+          <td>{{ patient.gender }}</td>
+          <td>{{ patient.nationality }}</td>
+          <td>
+              <form action="{{ url_for('views.deleteRecord', patientId=patient.id) }}" method="post">
+                  <button type="submit"><i class="bi bi-trash"></i></button>
+              </form>
+          </td>
+      </tr>
+      {% endfor %}
+  </tbody>
+</table>
+{%endif%}
+{% endblock %}

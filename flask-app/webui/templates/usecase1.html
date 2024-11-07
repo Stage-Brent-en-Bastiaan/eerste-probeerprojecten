@@ -1,0 +1,19 @@
+{% extends "base.html" %} {% block title %}Home{% endblock %} {% block content%}
+<h1 align="center">Nieuw bericht</h1>
+<form class="" method="post" action="{{ url_for('views.newMessage') }}">
+    <div class="form-group form-row">
+        <label for="recipient_id" class="col col-form-label">id ontvanger</label>
+        <div class="col">
+          <input type="number" class="" id="recipient_id" name="recipient_id" placeholder="ontvanger id">
+        </div>
+    </div>
+    <div class="form-group row">
+      <label for="kamer" class="col col-form-label">inhoud</label>
+      <div class="col">
+        <input type="number" class="" id="content" name="content" placeholder="inhoud">
+      </div>
+    </div>
+</form>
+    
+
+{% endblock %}
